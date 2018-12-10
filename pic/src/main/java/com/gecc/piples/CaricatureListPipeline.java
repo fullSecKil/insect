@@ -2,6 +2,7 @@ package com.gecc.piples;
 
 import com.gecc.pojo.CaricatureList;
 import com.gecc.tools.DownloadFile;
+import com.gecc.tools.DownloadFileNIO;
 import com.geccocrawler.gecco.annotation.PipelineName;
 import com.geccocrawler.gecco.pipeline.Pipeline;
 
@@ -44,13 +45,8 @@ public class CaricatureListPipeline implements Pipeline<CaricatureList> {
         String filePath = "D:\\Caricature\\";
 
         List<Integer> result= arrPagesAddressMap.entrySet().parallelStream().map(ad-> {
-            try {
-                // return new DownloadFile(ad.getValue(), ad.getKey(),  "/usr/caricature/" + bean.getCaricatureName() + "/" + bean.getThisChapter()).downloadStart();
-                return new DownloadFile(ad.getValue(), ad.getKey(),   filePath + bean.getCaricatureName() + "\\" + bean.getThisChapter()).downloadStart();
-            } catch (IOException e) {
-                e.printStackTrace();
-                return 0;
-            }
+            // return new DownloadFile(ad.getValue(), ad.getKey(),  "/usr/caricature/" + bean.getCaricatureName() + "/" + bean.getThisChapter()).downloadStart();
+            return new DownloadFileNIO(ad.getValue(), ad.getKey(),   filePath + bean.getCaricatureName() + "\\" + bean.getThisChapter()).downloadStart();
         }).collect(toList());
 
         System.out.println(result);
@@ -72,5 +68,14 @@ public class CaricatureListPipeline implements Pipeline<CaricatureList> {
         } catch(IOException e){
             e.printStackTrace();
         }
+
+/*        // 读
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        fis = new FileInputStream(file);
+        ois = new ObjectInputStream(fis);
+        HashMap<Integer, Student> stuRead = new HashMap<Integer, Student>();
+        stuRead = (HashMap<Integer, Student>) ois.readObject();
+        ois.close();*/
     }
 }
