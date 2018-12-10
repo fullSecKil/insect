@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ff9c26d7-b53e-4dee-a1d6-d77b46f6304e" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/../pic/src/main/java/com/gecc/tools/DownloadFileNIO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pic/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pic/src/main/java/com/gecc/piples/CaricatureListPipeline.java" beforeDir="false" afterPath="$PROJECT_DIR$/../pic/src/main/java/com/gecc/piples/CaricatureListPipeline.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pic/src/main/java/com/gecc/tools/DownloadFileNIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../pic/src/main/java/com/gecc/tools/DownloadFileNIO.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
