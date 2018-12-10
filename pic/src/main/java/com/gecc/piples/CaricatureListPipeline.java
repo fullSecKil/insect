@@ -5,12 +5,11 @@ import com.gecc.tools.DownloadFile;
 import com.geccocrawler.gecco.annotation.PipelineName;
 import com.geccocrawler.gecco.pipeline.Pipeline;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -42,10 +41,12 @@ public class CaricatureListPipeline implements Pipeline<CaricatureList> {
 
         System.out.println(arrPagesAddressMap);
 
+        String filePath = "D:\\Caricature\\";
+
         List<Integer> result= arrPagesAddressMap.entrySet().parallelStream().map(ad-> {
             try {
-                return new DownloadFile(ad.getValue(), ad.getKey(),  "/usr/caricature/" + bean.getCaricatureName() + "/" + bean.getThisChapter()).downloadStart();
-                // return new DownloadFile(ad.getValue(), ad.getKey(),  "E:\\Caricature\\" + bean.getCaricatureName() + "\\" + bean.getThisChapter()).downloadStart();
+                // return new DownloadFile(ad.getValue(), ad.getKey(),  "/usr/caricature/" + bean.getCaricatureName() + "/" + bean.getThisChapter()).downloadStart();
+                return new DownloadFile(ad.getValue(), ad.getKey(),   filePath + bean.getCaricatureName() + "\\" + bean.getThisChapter()).downloadStart();
             } catch (IOException e) {
                 e.printStackTrace();
                 return 0;
@@ -53,5 +54,23 @@ public class CaricatureListPipeline implements Pipeline<CaricatureList> {
         }).collect(toList());
 
         System.out.println(result);
+
+        Map<String ,Map<String, String>> fileText = new HashMap<>();
+        fileText.put(bean.getThisChapter(), arrPagesAddressMap);
+        File file = new File(filePath + bean.getCaricatureName() + "\\" + bean.getCaricatureName()+".data");
+
+        // 追加
+        try (FileOutputStream fop = new FileOutputStream(file, true)){
+            if (! file.exists()){
+                file.createNewFile();
+            }
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fop);
+            objectOutputStream.writeObject(fileText);
+            objectOutputStream.flush();
+            fop.close();
+            objectOutputStream.close();
+        } catch(IOException e){
+            e.printStackTrace();
+        }
     }
 }
