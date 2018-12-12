@@ -1,6 +1,9 @@
-package com.gecc.pojo;
+package com.example.caricaturepip.gecco;
 
-import com.geccocrawler.gecco.annotation.*;
+import com.geccocrawler.gecco.annotation.Gecco;
+import com.geccocrawler.gecco.annotation.HtmlField;
+import com.geccocrawler.gecco.annotation.JSVar;
+import com.geccocrawler.gecco.annotation.Text;
 import com.geccocrawler.gecco.spider.HtmlBean;
 
 import java.util.List;
@@ -8,7 +11,7 @@ import java.util.List;
 /**
  * @file: CaricatureList.class
  * @author: Dusk
- * @since: 2018/12/9 12:16
+ * @since: 2018/12/10 22:37
  * @desc:
  */
 
@@ -27,7 +30,7 @@ public class CaricatureList implements HtmlBean {
     /**
      * 名字
      */
-   @Text
+    @Text
     @HtmlField(cssPath = ".display_graybg > div.display_middle > h1 > a")
     private String caricatureName;
 
@@ -37,6 +40,7 @@ public class CaricatureList implements HtmlBean {
     @Text
     @HtmlField(cssPath = ".display_graybg > div.display_middle > span")
     private String thisChapter;
+
 
     public List<String> getArrPages() {
         return arrPages;
