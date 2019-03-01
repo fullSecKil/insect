@@ -42,18 +42,19 @@ public class CaricatureListPipeline implements Pipeline<CaricatureList> {
 
         System.out.println(arrPagesAddressMap);
 
-        String filePath = "D:\\Caricature\\";
+        String filePath = "/usr/caricature/" ;
+        // "D:/Caricature/"
 
         List<Integer> result= arrPagesAddressMap.entrySet().parallelStream().map(ad-> {
             // return new DownloadFile(ad.getValue(), ad.getKey(),  "/usr/caricature/" + bean.getCaricatureName() + "/" + bean.getThisChapter()).downloadStart();
-            return new DownloadFileNIO(ad.getValue(), ad.getKey(),   filePath + bean.getCaricatureName() + "\\" + bean.getThisChapter()).downloadStart();
+            return new DownloadFileNIO(ad.getValue(), ad.getKey(),   filePath + bean.getCaricatureName() + "/" + bean.getThisChapter()).downloadStart();
         }).collect(toList());
 
         System.out.println(result);
 
         Map<String ,Map<String, String>> fileText = new HashMap<>();
         fileText.put(bean.getThisChapter(), arrPagesAddressMap);
-        File file = new File(filePath + bean.getCaricatureName() + "\\" + bean.getCaricatureName()+".data");
+        File file = new File(filePath + bean.getCaricatureName() + "/" + bean.getCaricatureName()+".data");
 
         // 追加
         try (FileOutputStream fop = new FileOutputStream(file, true)){

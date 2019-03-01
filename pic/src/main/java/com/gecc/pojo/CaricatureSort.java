@@ -16,7 +16,7 @@ import java.util.List;
  * @desc:
  */
 
-@Gecco(matchUrl = "https://manhua.dmzj.com/{name}", pipelines = {"consolePipeline", "caricatureSortPipeline"})
+@Gecco(matchUrl = {"https://manhua.dmzj.com/{name}", "https://manhua.dmzj.com/{name}/"}, pipelines = {"consolePipeline", "caricatureSortPipeline"})
 public class CaricatureSort implements HtmlBean {
 
     private static final long serialVersionUID = 665662335318691818L;
