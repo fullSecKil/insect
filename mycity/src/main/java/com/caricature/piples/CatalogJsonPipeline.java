@@ -25,12 +25,12 @@ public class CatalogJsonPipeline extends JsonPipeline {
         process(currRequest, categorys);
     }
 
-    private void process(HttpRequest currRequest, JSONArray categorys){
-        if(categorys == null){
+    private void process(HttpRequest currRequest, JSONArray categorys) {
+        if (categorys == null) {
             return;
         }
-        // StartSchedulerContext.into(currRequest.subRequest("https://www.manhuadb.com/manhua/951/985_9891.html"));
-        categorys.parallelStream().map(c->((JSONObject) c).getJSONArray("cateCata")).flatMap(c->c.stream().map(c1->((JSONObject)c1).getString("url"))).forEach(url->StartSchedulerContext.into(currRequest.subRequest(url)));
+        // StartSchedulerContext.into(currRequest.subRequest("https://www.manhuadb.com/manhua/951/985_9878.html"));
+        categorys.parallelStream().map(c -> ((JSONObject) c).getJSONArray("cateCata")).flatMap(c -> c.stream().map(c1 -> ((JSONObject) c1).getString("url"))).forEach(url -> StartSchedulerContext.into(currRequest.subRequest(url)));
         // c.stream().map(c.getString("url"))
     }
 }
